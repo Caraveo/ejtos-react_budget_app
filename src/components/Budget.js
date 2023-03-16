@@ -7,6 +7,10 @@ const Budget = () => {
     const [budgetState, setBudgetState] = useState(budgetLimit);
     //check the budgetState value is within the budgetLimit
 
+    const totalExpenses = expenses.reduce((total, item) => {
+        return (total += item.cost);
+    }, 0);
+
     useEffect(() => {
             if(budgetState > budgetLimit)
             {
@@ -14,7 +18,7 @@ const Budget = () => {
                 alert('The budget cannot be greater than 20000');
                 setBudgetState(budget);
             }
-            if(budgetState > expenses)
+            if(budgetState < totalExpenses)
             {
                 console.log('You cannot reduce the budget value lower than expenses');
                 alert('You cannot reduce the budget value lower than expenses');
