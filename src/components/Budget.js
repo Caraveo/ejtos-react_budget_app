@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = () => {
-    const { budget, expenses } = useContext(AppContext);
-    const budgetLimit = 20000;
+    const { budget, expenses, currency } = useContext(AppContext);
+    const budgetLimit = budget;
 
     const [budgetState, setBudgetState] = useState(budgetLimit);
     //check the budgetState value is within the budgetLimit
@@ -26,7 +26,7 @@ const Budget = () => {
     return (
         <form> 
         <div className='alert alert-secondary'>
-            <span>Budget: £<input
+            <span>Budget: {currency} <input
                     required='required'
                     type='number'
                     id='budget'

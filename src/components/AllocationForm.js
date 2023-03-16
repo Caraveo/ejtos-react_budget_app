@@ -1,13 +1,21 @@
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import { AppContext } from '../context/AppContext';
 
 const AllocationForm = (props) => {
-    const { dispatch,remaining  } = useContext(AppContext);
+    const { dispatch, remaining, currency  } = useContext(AppContext);
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
     const [action, setAction] = useState('');
+
+    useEffect(() => {
+        if(cost < 0){
+            alert("The value cannot be negative");
+            setCost("");
+        }
+    });
+
 
     const submitEvent = () => {
 
@@ -59,7 +67,7 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
-
+                  {currency}
                     <input
                         required='required'
                         type='number'
